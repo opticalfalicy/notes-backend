@@ -17,6 +17,6 @@
     "sinon": "^5.0.2"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server"
   }
 }
