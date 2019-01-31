@@ -14,8 +14,8 @@ const corsOptions = {
 const server = express();
 
 // const { login } = require('./login.js');
-const Note = require("./schemas/noteModel");
-const User = require("./userModel");
+// const Note = require("./schemas/noteModel");
+// const User = require("./userModel");
 
 server.use(bodyParser.json());
 server.use(cors());
@@ -37,42 +37,59 @@ server.use(cors());
 // );
 
 mongoose.connect(
-  "mongodb://localhost:5000",
+  "mongodb://admin:n0t3tak3r@ds163044.mlab.com:63044/notes",
   { useNewUrlParser: true }
 );
+
+// mongoose.connect(
+//   "mongodb://localhost:27017",
+//   { useNewUrlParser: true }
+// );
 
 server.get("/test", (req, res) => {
   res.status(200).json({ api: "notes" });
 });
 
+// --------------------- ROUTERS requires ===================//
+
+const createRouter = require("./routers/createRouter");
+const findRouter = require("./routers/findRouter");
+const deleteRouter = require("./routers/deleteRouter");
+const updateRouter = require("./routers/updateRouter");
+
 // Notes Routes
 
-server.get("/", (req, res) => {
-  console.log("Notes api");
-  res.status(200).json({ api: "notes" });
-  //   res.status(200).json("hey");
-  //   Note.find({})
-  //     .then(notes => {
-  //       res.status(200).json(notes);
-  //     })
-  //     .catch(error => {
-  //       res.status(500).json(error);
-  //     });
-});
+server.use("/api/c", createRouter);
+server.use("/api/d", deleteRouter);
+server.use("/api/f", findRouter);
+server.use("/api/u", updateRouter);
 
-server.post("/new", (req, res) => {
-  const { title, content } = req.body;
-  const newNote = new Note({ title, content });
-  console.log("New Note");
-  newNote
-    .save()
-    .then(note => {
-      res.status(200).json(note);
-    })
-    .catch(err => {
-      res.status(422).json({ err: "Error when creating the note" });
-    });
-});
+// server.get("/", (req, res) => {
+//   console.log("Notes api");
+//   res.status(200).json({ api: "notes" });
+//   //   res.status(200).json("hey");
+//   //   Note.find({})
+//   //     .then(notes => {
+//   //       res.status(200).json(notes);
+//   //     })
+//   //     .catch(error => {
+//   //       res.status(500).json(error);
+//   //     });
+// });
+
+// server.post("/new", (req, res) => {
+//   const { title, content } = req.body;
+//   const newNote = new Note({ title, content });
+//   console.log("New Note");
+//   newNote
+//     .save()
+//     .then(note => {
+//       res.status(200).json(note);
+//     })
+//     .catch(err => {
+//       res.status(422).json({ err: "Error when creating the note" });
+//     });
+// });
 
 // server.get("/:id", (req, res) => {
 //   const { _id } = req.params._id;
@@ -178,7 +195,7 @@ server.post("/new", (req, res) => {
 //   }
 // });
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 27017;
 
 server.listen(port, err => {
   if (err) console.log(err);

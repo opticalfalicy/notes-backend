@@ -1,8 +1,39 @@
 const express = require("express");
 
-const Note = require("../schemas/noteModel.js");
+const Data = require("../schemas/noteModel.js");
 
 const router = express.Router();
+
+router
+  .route("/:_id")
+  .get((req, res) => {
+    const { _id } = req.params;
+    Data.findById(_id)
+      .then(response => {
+        res.json(response);
+      })
+      .catch(err => {
+        res.status(500).json(err);
+      });
+  })
+  .put((req, res) => {
+    console.log("REQ", req.body);
+    const { _id } = req.params;
+    const updateInfo = req.body;
+
+    Data.findOneAndUpdate(
+      { _id: _id },
+      { title: updateInfo.title, content: updateInfo.content },
+      { new: true }
+    )
+      .then(response => {
+        response.save();
+        res.json(response);
+      })
+      .catch(err => {
+        res.status(500).json(err, "Failed to edit");
+      });
+  });
 
 // server.put("/:_id", (req, res) => {
 // const { _id, title, content } = req.body;
