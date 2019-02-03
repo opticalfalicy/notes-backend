@@ -4,6 +4,8 @@ const Item = require("../schemas/noteModel");
 
 const router = express.Router();
 
+// ======================== Create Note Router =========================
+
 router.post("/note", (req, res) => {
   // const { title, content } = req.body;
   // const data = {title, content}

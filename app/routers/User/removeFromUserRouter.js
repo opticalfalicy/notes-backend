@@ -1,7 +1,7 @@
 const express = require("express");
 
 //schema
-const Note = require("../schemas/noteModel");
+const User = require("../../schemas/userModel");
 
 const router = express.Router();
 
@@ -9,7 +9,7 @@ router
   .route("/:id")
   .get((req, res) => {
     const { id } = req.params;
-    Note.findById(id)
+    User.findById(id)
       .then(response => {
         res.json(response);
       })
@@ -17,9 +17,17 @@ router
         res.status(500).json(err);
       });
   })
-  .delete((req, res) => {
+  .put((req, res) => {
+    console.log("REQ", req.body);
     const { id } = req.params;
-    Note.findByIdAndRemove(id)
+    const updateInfo = req.body;
+    User.findByIdAndUpdate(
+      id,
+      {
+        $pull: { notes: updateInfo.notes }
+      },
+      { new: true }
+    )
       .then(response => {
         res.json(response);
       })

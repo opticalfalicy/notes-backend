@@ -1,24 +1,30 @@
 const mongoose = require("mongoose");
-const { Schema } = mongoose;
+const ObjectId = mongoose.Schema.Types.ObjectId;
 
-const NoteSchema = new Schema({
-  title: {
-    type: String,
-    required: true
+// const subSchema = new mongoose.Schema({
+//   title: {
+//     type: String
+//   },
+//   content: {
+//     type: String
+//   }
+// });
+
+const noteSchema = new mongoose.Schema(
+  {
+    // notes: [subSchema],
+    title: {
+      type: String
+    },
+    content: {
+      type: String
+    },
+    users: [{ type: ObjectId, ref: "User" }]
   },
-  content: {
-    type: String,
-    required: true
+
+  {
+    timestamps: true
   }
-});
+);
 
-NoteSchema.methods.getNoteTitle = function() {
-  return this.title;
-};
-
-NoteSchema.methods.getNoteContent = function() {
-  return this.content.length;
-};
-
-const Note = mongoose.model("Note", NoteSchema);
-module.exports = Note;
+module.exports = mongoose.model("Note", noteSchema, "notes");

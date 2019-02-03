@@ -5,10 +5,14 @@ const morgan = require("morgan");
 const mongoose = require("mongoose");
 const mongodb = require("mongodb");
 const cors = require("cors");
+const helmet = require("helmet");
 const corsOptions = {
   //   origin: "https://peaceful-meadow-91763.herokuapp.com/",
   origin: "*",
-  credentials: true
+  methods: "GET, HEAD, PUT, PATCH, POST, DELETE",
+  preflightContinue: false,
+  optionsSuccessStatus: 204
+  // credentials: true
 };
 
 const server = express();
@@ -19,7 +23,8 @@ const server = express();
 
 server.use(bodyParser.json());
 server.use(cors());
-// server.use(corsOptions);
+server.use(cors(corsOptions));
+server.use(morgan("dev"));
 
 // const url = process.env.MONGOLAB_URI;
 
@@ -36,10 +41,9 @@ server.use(cors());
 //   }
 // );
 
-mongoose.connect(
-  "mongodb://admin:n0t3tak3r@ds163044.mlab.com:63044/notes",
-  { useNewUrlParser: true }
-);
+mongoose.connect("mongodb://admin:n0t3tak3r@ds163044.mlab.com:63044/notes", {
+  useNewUrlParser: true
+});
 
 // mongoose.connect(
 //   "mongodb://localhost:27017",
@@ -56,6 +60,13 @@ const createRouter = require("./routers/createRouter");
 const findRouter = require("./routers/findRouter");
 const deleteRouter = require("./routers/deleteRouter");
 const updateRouter = require("./routers/updateRouter");
+const loginRouter = require("./routers/User/loginRouter");
+const registerRouter = require("./routers/User/registerRouter");
+const addToUserRouter = require("./routers/User/addToUserRouter");
+const removeFromUserRouter = require("./routers/User/removeFromUserRouter");
+const updateUserRouter = require("./routers/User/updateUserRouter");
+
+// ================= ROUTERS.use ================
 
 // Notes Routes
 
@@ -63,6 +74,14 @@ server.use("/api/c", createRouter);
 server.use("/api/d", deleteRouter);
 server.use("/api/f", findRouter);
 server.use("/api/u", updateRouter);
+
+// User Routes
+
+server.use("/api/r", registerRouter);
+server.use("/api/l", loginRouter);
+server.use("/api/u/a", addToUserRouter);
+server.use("/api/u/r", removeFromUserRouter);
+server.use("/api/u/u", updateUserRouter);
 
 // server.get("/", (req, res) => {
 //   console.log("Notes api");

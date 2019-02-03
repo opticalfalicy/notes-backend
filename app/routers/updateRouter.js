@@ -1,6 +1,6 @@
 const express = require("express");
 
-const Data = require("../schemas/noteModel.js");
+const Data = require("../schemas/noteModel");
 
 const router = express.Router();
 
