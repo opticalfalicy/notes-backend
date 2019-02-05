@@ -6,10 +6,10 @@ const Note = require("../schemas/noteModel");
 const router = express.Router();
 
 router
-  .route("/:id")
+  .route("/:_id")
   .get((req, res) => {
-    const { id } = req.params;
-    Note.findById(id)
+    const { _id } = req.params;
+    Note.findById(_id)
       .then(response => {
         res.json(response);
       })
@@ -18,8 +18,8 @@ router
       });
   })
   .delete((req, res) => {
-    const { id } = req.params;
-    Note.findByIdAndRemove(id)
+    const { _id } = req.params;
+    Note.findByIdAndRemove(_id)
       .then(response => {
         res.json(response);
       })
