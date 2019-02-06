@@ -27,13 +27,13 @@ https://github.com/swedishgoodbye/notes-frontend
 ### POST Note
 > /api/c/note  
 > The JSON Format for creating a note is as follows:  
-> {
->  "title": "Title as string"
->  "content": "Content as string"
+> {  
+>  **"title":** _"Title as string"_  
+>  **"content":** _"Content as string"_  
 > }
 
 ### PUT Note
-> /api/u/:_id_
+> /api/u/:_id_  
 > Use the same JSON format used by the POST route to update your note
 
 ### DELETE Note
