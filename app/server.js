@@ -41,14 +41,11 @@ server.use(morgan("dev"));
 //   }
 // );
 
-mongoose.connect("mongodb://admin:n0t3tak3r@ds163044.mlab.com:63044/notes", {
-  useNewUrlParser: true
-});
+// mongoose.connect("mongodb://admin:n0t3tak3r@ds163044.mlab.com:63044/notes", {
+//   useNewUrlParser: true
+// });
 
-// mongoose.connect(
-//   "mongodb://localhost:27017",
-//   { useNewUrlParser: true }
-// );
+mongoose.connect("mongodb://localhost/notes", { useNewUrlParser: true });
 
 server.get("/test", (req, res) => {
   res.status(200).json({ api: "notes" });
@@ -214,7 +211,7 @@ server.use("/api/u/u", updateUserRouter);
 //   }
 // });
 
-const port = process.env.PORT || 27017;
+const port = process.env.PORT || 5000;
 
 server.listen(port, err => {
   if (err) console.log(err);
