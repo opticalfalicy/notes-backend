@@ -37,4 +37,16 @@ https://github.com/swedishgoodbye/notes-frontend
 > Use the same JSON format used by the POST route to update your note
 
 ### DELETE Note
-> /api/d/:_\_id_
+> /api/d/:_\_id_  
+  
+**THERE ARE FILES INCLUDED FOR THE LOGIN/REGISTER SYSTEM. THIS IS A WORK IN PROGRESS FEATURE AND STABILITY IS NOT ENSURED, AND DOES NOT NECISSARILY DO ANYTHING YET.**  
+### POST Register
+> /api/r/
+> The JSON Format for registering a user is as follows:  
+> {  
+>  **"username":** _"Username as string"_  
+>  **"password":** _"Password as string"_  
+> }
+
+### POST Login
+> /api/l
