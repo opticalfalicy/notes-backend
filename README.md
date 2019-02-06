@@ -39,9 +39,9 @@ https://github.com/swedishgoodbye/notes-frontend
 ### DELETE Note
 > /api/d/:_\_id_  
   
-**THERE ARE FILES INCLUDED FOR THE LOGIN/REGISTER SYSTEM. THIS IS A WORK IN PROGRESS FEATURE AND STABILITY IS NOT ENSURED, AND DOES NOT NECISSARILY DO ANYTHING YET.**  
+**THERE ARE FILES INCLUDED FOR THE LOGIN/REGISTER SYSTEM. THIS IS A WORK IN PROGRESS FEATURE AND STABILITY IS NOT ENSURED, AND DOES NOT NECESSARILY DO ANYTHING YET.**  
 ### POST Register
-> /api/r/
+> /api/r/  
 > The JSON Format for registering a user is as follows:  
 > {  
 >  **"username":** _"Username as string"_  
