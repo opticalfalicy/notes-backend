@@ -1,6 +1,7 @@
 # notes-backend
 The front end portion of this project can be found:  
 https://github.com/swedishgoodbye/notes-frontend  
+**THIS APP IS WORK IN PROGRESS. STABILITY IS NOT ENSURED**
   
 ## Prerequisite Software:
 * [yarn](https://yarnpkg.com/en/)
@@ -21,7 +22,19 @@ https://github.com/swedishgoodbye/notes-frontend
 > /api/f/notes
 
 ### GET Note By ID
-> /api/f/view/:_id
+> /api/f/view/:_id_
 
 ### POST Note
-> 
+> /api/c/note  
+> The JSON Format for creating a note is as follows:  
+> {
+>  "title": "Title as string"
+>  "content": "Content as string"
+> }
+
+### PUT Note
+> /api/u/:_id_
+> Use the same JSON format used by the POST route to update your note
+
+### DELETE Note
+> /api/d/:_id_
