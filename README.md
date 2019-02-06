@@ -22,7 +22,7 @@ https://github.com/swedishgoodbye/notes-frontend
 > /api/f/notes
 
 ### GET Note By ID
-> /api/f/view/:_id_
+> /api/f/view/:_\_id_
 
 ### POST Note
 > /api/c/note  
@@ -33,8 +33,8 @@ https://github.com/swedishgoodbye/notes-frontend
 > }
 
 ### PUT Note
-> /api/u/:_id_  
+> /api/u/:_\_id_  
 > Use the same JSON format used by the POST route to update your note
 
 ### DELETE Note
-> /api/d/:_id_
+> /api/d/:_\_id_
