@@ -13,9 +13,15 @@ https://github.com/swedishgoodbye/notes-frontend
 * run 'yarn start' / 'npm start' or 'node server'
   
 ## API Routes:  
-* include "localhost:5000/" on your line before these routes  
+* include 'localhost:5000/' on your request line before these routes  
 ### DB TEST Route
-> 
+> /test
 
 ### GET Notes  
->  
+> /api/f/notes
+
+### GET Note By ID
+> /api/f/view/:_id
+
+### POST Note
+> 
